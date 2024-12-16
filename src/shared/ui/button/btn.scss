@@ -1,0 +1,36 @@
+@import "@/app/config/styles/connections.scss";
+
+.btn {
+  @include flex-all-center;
+
+  gap: 1rem;
+  width: 100%;
+  min-width: 15rem;
+  min-height: 4rem;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  border-radius: var(--radius);
+  line-height: var(--medium-line-height);
+  text-align: center;
+  border: 0.1rem solid var(--primary-color);
+  color: var(--white-100);
+  background-color: var(--primary-color);
+  transition: background-color var(--transition),
+  border var(--transition);
+
+  &:disabled {
+    border: 0.1rem solid #dee2e6;
+    color: var(--gray-200);
+    background-color: var(--white-400);
+    pointer-events: none;
+  }
+
+  @media (hover) {
+    &:hover {
+      border: 0.1rem solid var(--primary-color-900);
+      background-color: var(--primary-color-900);
+      transition: background-color var(--transition),
+      border var(--transition);
+    }
+  }
+}

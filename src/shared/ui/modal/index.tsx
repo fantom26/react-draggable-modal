@@ -17,13 +17,6 @@ export interface ModalProps {
   onClose: () => void;
 }
 
-export interface DialogConfirm extends ModalProps {
-  onSuccess: () => void;
-  onCancel: () => void;
-  onSuccessText?: string;
-  onCancelText?: string;
-}
-
 export const Modal: FC<ModalProps> = ({
   visible,
   width = 58.5,

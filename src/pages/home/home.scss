@@ -1,0 +1,11 @@
+@import "@/app/config/styles/connections";
+
+.home-page {
+  padding-block: 5rem;
+
+  &__btns {
+    @include flex-all-center;
+    gap: 2rem;
+    max-width: 40rem;
+  }
+}
