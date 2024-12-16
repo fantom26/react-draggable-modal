@@ -5,6 +5,7 @@ body {
   color: var(--dark-800);
   font-size: var(--medium-size);
   background-color: var(--white-100);
+  overflow: hidden;
 
   &.scroll {
     &::-webkit-scrollbar {
@@ -20,13 +21,4 @@ body {
     overflow: hidden;
     overscroll-behavior: none;
   }
-}
-
-.wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-width: 36rem;
-  min-height: 100%;
 }

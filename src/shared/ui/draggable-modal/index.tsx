@@ -1,9 +1,7 @@
 import { FC, ReactNode, useLayoutEffect, useState } from "react";
 
-import { Rnd } from "react-rnd";
-import { Transition } from "react-transition-group";
+import { Rnd, RndDragCallback, RndResizeCallback } from "react-rnd";
 
-import { ANIMATION_DELAY } from "@/shared/config/constants.ts";
 import { ModalProps, Portal } from "@/shared/ui";
 
 import "./draggable-modal.scss";
@@ -26,6 +24,24 @@ export const DraggableModal: FC<DraggableModalProps> = ({
   const [size, setSize] = useState({ width: 400, height: 300 });
   const [position, setPosition] = useState(defaultPosition);
 
+  const onDragStop: RndDragCallback = (_e, { x, y }) => {
+    setPosition((prev) => ({ ...prev, x, y }));
+  };
+
+  const onResize: RndResizeCallback = (
+    _e,
+    _direction,
+    ref,
+    _delta,
+    position
+  ) => {
+    setSize({
+      width: ref.offsetWidth,
+      height: ref.offsetHeight
+    });
+    setPosition(position);
+  };
+
   useLayoutEffect(() => {
     const handleResize = () => {
       const newCenterX = (window.innerWidth - size.width) / 2;
@@ -37,37 +53,26 @@ export const DraggableModal: FC<DraggableModalProps> = ({
   }, []);
 
   return (
-    <Portal container={document.body}>
-      <Transition
-        in={visible}
-        timeout={ANIMATION_DELAY}
-        mountOnEnter
-        unmountOnExit
-      >
-        {(state) => (
+    <>
+      {visible && (
+        <Portal container={document.body}>
           <Rnd
             default={{ ...defaultPosition, ...size }}
             position={position}
             size={size}
-            className={`draggable-modal ${state}`}
+            className="draggable-modal"
             bounds="window"
             minWidth={300}
             maxWidth={maxWidth}
             minHeight={200}
             maxHeight={maxHeight}
-            onDragStop={(_, { x, y }) => setPosition({ x, y })}
-            onResizeStop={(_, _1, ref, _2, position) => {
-              setSize({
-                width: ref.offsetWidth,
-                height: ref.offsetHeight
-              });
-              setPosition(position);
-            }}
+            onDragStop={onDragStop}
+            onResizeStop={onResize}
           >
             {children}
           </Rnd>
-        )}
-      </Transition>
-    </Portal>
+        </Portal>
+      )}
+    </>
   );
 };
