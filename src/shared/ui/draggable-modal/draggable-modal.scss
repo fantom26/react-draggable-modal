@@ -8,21 +8,7 @@
   border-radius: var(--radius);
   padding: 1.5rem;
 
-  &.entering {
-    &::before, & {
-      animation: show-modal var(--transition) forwards;
-    }
-  }
-
-  &.entered {
-    &::before, & {
-      @include fade("show");
-    }
-  }
-
-  &.exiting {
-    &::before, & {
-      animation: show-modal var(--transition) reverse;
-    }
+  &__header {
+    @include flex-all-sb;
   }
 }

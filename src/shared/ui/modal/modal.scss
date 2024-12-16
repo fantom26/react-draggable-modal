@@ -71,55 +71,9 @@
   }
 
   &__close {
-    @include box(4rem);
-
     position: absolute;
     top: 2rem;
     right: 2rem;
-    border-radius: var(--radius);
-    background-color: var(--primary-color-100);
-    transition: background-color var(--transition);
-
-    @media (hover) {
-      &:hover {
-        background-color: var(--primary-color);
-        transition: background-color var(--transition);
-
-        &::after,
-        &::before {
-          background-color: var(--primary-color-100);
-          transition: background-color var(--transition);
-        }
-      }
-    }
-
-    @include small_tablet {
-      @include box(3rem);
-
-      top: 1.5rem;
-      right: 1.5rem;
-    }
-
-    &::after,
-    &::before {
-      @include pseudo($width: 2rem, $height: 0.2rem);
-
-      top: 50%;
-      left: 50%;
-      background-color: var(--primary-color);
-
-      @include small_tablet {
-        width: 1.6rem;
-      }
-    }
-
-    &::before {
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
-
-    &::after {
-      transform: translate(-50%, -50%) rotate(-45deg);
-    }
   }
 
   &__form {

@@ -1,5 +1,7 @@
 @import "@/app/config/styles/connections";
 
+$form-gap: 1.5rem;
+
 .home-page {
   padding-block: 5rem;
 
@@ -11,7 +13,12 @@
 
   &__form {
     @include flex-clmn;
-    gap: 1.5rem;
+    gap: $form-gap;
     margin-top: 2rem;
+
+    &-wrapper {
+      @include flex-all-sb;
+      gap: $form-gap;
+    }
   }
 }

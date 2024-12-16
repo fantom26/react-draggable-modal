@@ -4,7 +4,7 @@ import { Transition } from "react-transition-group";
 
 import { ANIMATION_DELAY } from "@/shared/config/constants.ts";
 import { useScrollLock } from "@/shared/hooks";
-import { Portal } from "@/shared/ui";
+import { CloseButton, Portal } from "@/shared/ui";
 import { GlobalLoader } from "@/shared/ui/global-loader";
 
 import "./modal.scss";
@@ -16,16 +16,6 @@ export interface ModalProps {
   width?: number;
   onClose: () => void;
 }
-
-export const CloseModalBtn: FC<Pick<ModalProps, "onClose">> = ({ onClose }) => {
-  return (
-    <button
-      className="modal__close"
-      aria-label="Close modal"
-      onClick={onClose}
-    ></button>
-  );
-};
 
 const ModalWrapper: FC<Omit<ModalProps, "width" | "visible">> = ({
   children,
@@ -46,7 +36,11 @@ const ModalWrapper: FC<Omit<ModalProps, "width" | "visible">> = ({
             {children}
           </Suspense>
         </div>
-        <CloseModalBtn onClose={onClose} />
+        <CloseButton
+          className="modal__close"
+          onClick={onClose}
+          aria-label="Close modal"
+        />
       </div>
     </div>
   );

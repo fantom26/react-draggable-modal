@@ -2,7 +2,7 @@ import { FC, ReactNode, useLayoutEffect, useState } from "react";
 
 import { Rnd, RndDragCallback, RndResizeCallback } from "react-rnd";
 
-import { ModalProps, Portal } from "@/shared/ui";
+import { CloseButton, ModalProps, Portal } from "@/shared/ui";
 
 import "./draggable-modal.scss";
 
@@ -12,15 +12,18 @@ interface DraggableModalProps extends ModalProps {
   maxWidth?: number;
   maxHeight?: number;
   children: ReactNode;
+  title?: string;
 }
 
 export const DraggableModal: FC<DraggableModalProps> = ({
   defaultPosition = { x: 0, y: 0 },
   maxWidth = 800,
-  maxHeight = 600,
+  maxHeight = 1000,
+  title,
+  onClose,
   children
 }) => {
-  const [size, setSize] = useState({ width: 400, height: 550 });
+  const [size, setSize] = useState({ width: 400, height: 650 });
   const [position, setPosition] = useState(defaultPosition);
 
   const onDragStop: RndDragCallback = (_e, { x, y }) => {
@@ -66,6 +69,10 @@ export const DraggableModal: FC<DraggableModalProps> = ({
         onDragStop={onDragStop}
         onResizeStop={onResize}
       >
+        <div className="draggable-modal__header">
+          <h3>{title}</h3>
+          <CloseButton onClick={onClose} aria-label="Close draggable modal" />
+        </div>
         {children}
       </Rnd>
     </Portal>
