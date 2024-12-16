@@ -4,3 +4,4 @@ export * from "./loader";
 export * from "./global-loader";
 export * from "./draggable-modal";
 export * from "./button";
+export * from "./portal";

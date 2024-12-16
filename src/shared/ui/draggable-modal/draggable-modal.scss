@@ -1,0 +1,27 @@
+@import "@/app/config/styles/connections.scss";
+
+.draggable-modal {
+  border: 0.1rem solid var(--gray-300);
+  box-shadow: var(--shadow);
+  background-color: var(--white-100);
+  border-radius: var(--radius);
+  padding: 1rem;
+
+  &.entering {
+    &::before, & {
+      animation: show-modal var(--transition) forwards;
+    }
+  }
+
+  &.entered {
+    &::before, & {
+      @include fade("show");
+    }
+  }
+
+  &.exiting {
+    &::before, & {
+      animation: show-modal var(--transition) reverse;
+    }
+  }
+}

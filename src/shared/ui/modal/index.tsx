@@ -1,10 +1,10 @@
 import { FC, ReactNode, Suspense, useEffect } from "react";
 
-import { createPortal } from "react-dom";
 import { Transition } from "react-transition-group";
 
 import { ANIMATION_DELAY } from "@/shared/config/constants.ts";
 import { useScrollLock } from "@/shared/hooks";
+import { Portal } from "@/shared/ui";
 import { GlobalLoader } from "@/shared/ui/global-loader";
 
 import "./modal.scss";
@@ -16,6 +16,41 @@ export interface ModalProps {
   width?: number;
   onClose: () => void;
 }
+
+const CloseModalBtn: FC<Pick<ModalProps, "onClose">> = ({ onClose }) => {
+  return (
+    <button
+      className="modal__close"
+      aria-label="Close modal"
+      onClick={onClose}
+    ></button>
+  );
+};
+
+const ModalWrapper: FC<Omit<ModalProps, "width" | "visible">> = ({
+  children,
+  onClose,
+  bodyClassName
+}) => {
+  return (
+    <div className="modal-wrapper">
+      <div className="modal-content">
+        <div
+          className={
+            bodyClassName
+              ? `modal-content__body ${bodyClassName}`
+              : "modal-content__body"
+          }
+        >
+          <Suspense fallback={<GlobalLoader loading={true} />}>
+            {children}
+          </Suspense>
+        </div>
+        <CloseModalBtn onClose={onClose} />
+      </div>
+    </div>
+  );
+};
 
 export const Modal: FC<ModalProps> = ({
   visible,
@@ -46,43 +81,27 @@ export const Modal: FC<ModalProps> = ({
     };
   }, [visible]);
 
-  return createPortal(
-    <Transition
-      in={visible}
-      timeout={ANIMATION_DELAY}
-      mountOnEnter
-      unmountOnExit
-    >
-      {(state) => (
-        <div
-          style={styles}
-          className={`modal ${state}`}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="modal-wrapper">
-            <div className="modal-content">
-              <div
-                className={
-                  bodyClassName
-                    ? `modal-content__body ${bodyClassName}`
-                    : "modal-content__body"
-                }
-              >
-                <Suspense fallback={<GlobalLoader loading={true} />}>
-                  {children}
-                </Suspense>
-              </div>
-              <button
-                className="modal__close"
-                aria-label="Close modal"
-                onClick={onClose}
-              ></button>
-            </div>
+  return (
+    <Portal container={document.body}>
+      <Transition
+        in={visible}
+        timeout={ANIMATION_DELAY}
+        mountOnEnter
+        unmountOnExit
+      >
+        {(state) => (
+          <div
+            style={styles}
+            className={`modal ${state}`}
+            role="dialog"
+            aria-modal="true"
+          >
+            <ModalWrapper onClose={onClose} bodyClassName={bodyClassName}>
+              {children}
+            </ModalWrapper>
           </div>
-        </div>
-      )}
-    </Transition>,
-    document.body
+        )}
+      </Transition>
+    </Portal>
   );
 };

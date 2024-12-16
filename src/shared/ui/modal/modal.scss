@@ -155,13 +155,3 @@
     }
   }
 }
-
-@keyframes show-modal {
-  0% {
-    @include fade("hide");
-  }
-
-  100% {
-    @include fade("show");
-  }
-}
