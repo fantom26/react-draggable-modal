@@ -37,10 +37,14 @@ function Home() {
         <Modal onClose={closeModal} visible={isModalOpen}>
           Default modal
         </Modal>
-        <DraggableModal onClose={closeDragModal} visible={isDragModalOpen}>
-          Draggable modal
-          <Button type="button" onClick={closeDragModal}>Close drag modal</Button>
-        </DraggableModal>
+        {isDragModalOpen && (
+          <DraggableModal onClose={closeDragModal} visible={isDragModalOpen}>
+            Draggable modal
+            <Button type="button" onClick={closeDragModal}>
+              Close drag modal
+            </Button>
+          </DraggableModal>
+        )}
       </Container>
     </div>
   );

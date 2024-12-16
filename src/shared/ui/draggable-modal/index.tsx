@@ -18,7 +18,6 @@ export const DraggableModal: FC<DraggableModalProps> = ({
   defaultPosition = { x: 0, y: 0 },
   maxWidth = 800,
   maxHeight = 600,
-  visible,
   children
 }) => {
   const [size, setSize] = useState({ width: 400, height: 300 });
@@ -53,26 +52,22 @@ export const DraggableModal: FC<DraggableModalProps> = ({
   }, []);
 
   return (
-    <>
-      {visible && (
-        <Portal container={document.body}>
-          <Rnd
-            default={{ ...defaultPosition, ...size }}
-            position={position}
-            size={size}
-            className="draggable-modal"
-            bounds="window"
-            minWidth={300}
-            maxWidth={maxWidth}
-            minHeight={200}
-            maxHeight={maxHeight}
-            onDragStop={onDragStop}
-            onResizeStop={onResize}
-          >
-            {children}
-          </Rnd>
-        </Portal>
-      )}
-    </>
+    <Portal container={document.body}>
+      <Rnd
+        default={{ ...defaultPosition, ...size }}
+        position={position}
+        size={size}
+        className="draggable-modal"
+        bounds="window"
+        minWidth={300}
+        maxWidth={maxWidth}
+        minHeight={200}
+        maxHeight={maxHeight}
+        onDragStop={onDragStop}
+        onResizeStop={onResize}
+      >
+        {children}
+      </Rnd>
+    </Portal>
   );
 };
