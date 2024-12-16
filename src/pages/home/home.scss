@@ -8,4 +8,10 @@
     gap: 2rem;
     max-width: 40rem;
   }
+
+  &__form {
+    @include flex-clmn;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
 }

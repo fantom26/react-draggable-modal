@@ -1,7 +1,5 @@
 import { FC, ReactNode } from "react";
 
-import { useInputTranslation } from "@hooks";
-
 import "./form-field.scss";
 
 export interface FormFieldWrapper {
@@ -15,8 +13,13 @@ export interface FormFieldProps extends FormFieldWrapper {
   required?: boolean;
 }
 
-export const FormField: FC<FormFieldProps> = ({ error, helpertext, children, required = false, wrapperclass }) => {
-  const { handleTranslation } = useInputTranslation();
+export const FormField: FC<FormFieldProps> = ({
+  error,
+  helpertext,
+  children,
+  required = false,
+  wrapperclass
+}) => {
   const generateClassNames = () => {
     let classes = "form-field";
 
@@ -38,7 +41,7 @@ export const FormField: FC<FormFieldProps> = ({ error, helpertext, children, req
   return (
     <div className={generateClassNames()}>
       {children}
-      {helpertext && <p className="form-field__helper-text">{handleTranslation(helpertext)}</p>}
+      {helpertext && <p className="form-field__helper-text">{helpertext}</p>}
     </div>
   );
 };

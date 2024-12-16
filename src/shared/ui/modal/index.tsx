@@ -17,7 +17,7 @@ export interface ModalProps {
   onClose: () => void;
 }
 
-const CloseModalBtn: FC<Pick<ModalProps, "onClose">> = ({ onClose }) => {
+export const CloseModalBtn: FC<Pick<ModalProps, "onClose">> = ({ onClose }) => {
   return (
     <button
       className="modal__close"

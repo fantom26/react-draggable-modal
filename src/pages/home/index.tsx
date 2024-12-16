@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-import { Button, Container, DraggableModal, Modal } from "@/shared/ui";
+import {
+  Button,
+  CloseModalBtn,
+  Container,
+  DraggableModal,
+  Modal
+} from "@/shared/ui";
+import Form from "@/shared/ui/form";
 
 import "./home.scss";
 
@@ -23,6 +30,10 @@ function Home() {
     setIsDragModalOpen(false);
   };
 
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
+
   return (
     <div className="home-page">
       <Container>
@@ -40,9 +51,14 @@ function Home() {
         {isDragModalOpen && (
           <DraggableModal onClose={closeDragModal} visible={isDragModalOpen}>
             Draggable modal
-            <Button type="button" onClick={closeDragModal}>
-              Close drag modal
-            </Button>
+            <CloseModalBtn onClose={closeDragModal} />
+            <Form.Root classes="home-page__form" onSubmit={onSubmit}>
+              <Form.Input name="firstName" label="First name" required />
+              <Form.Input name="lastName" label="Last name" required />
+              <Form.Checkbox name="terms" label="Do you agree?" />
+              <Form.TextArea name="comment" label="Comment" />
+              <Button type="submit">Send</Button>
+            </Form.Root>
           </DraggableModal>
         )}
       </Container>

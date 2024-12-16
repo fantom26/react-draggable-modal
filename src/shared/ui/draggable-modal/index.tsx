@@ -20,7 +20,7 @@ export const DraggableModal: FC<DraggableModalProps> = ({
   maxHeight = 600,
   children
 }) => {
-  const [size, setSize] = useState({ width: 400, height: 300 });
+  const [size, setSize] = useState({ width: 400, height: 550 });
   const [position, setPosition] = useState(defaultPosition);
 
   const onDragStop: RndDragCallback = (_e, { x, y }) => {
