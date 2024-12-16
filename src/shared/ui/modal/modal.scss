@@ -1,0 +1,168 @@
+@import "@/app/config/styles/connections.scss";
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: z("modal");
+  overflow: hidden auto;
+
+  &::before {
+    position: absolute;
+    z-index: -1;
+    background-color: var(--backdrop);
+    content: "";
+    inset: 0;
+
+    @include fade("hide");
+  }
+
+  &.entering {
+    &::before, & {
+      animation: show-modal var(--transition) forwards;
+    }
+  }
+
+  &.entered {
+    &::before, & {
+      @include fade("show");
+    }
+  }
+
+  &.exiting {
+    &::before, & {
+      animation: show-modal var(--transition) reverse;
+    }
+  }
+
+  &-wrapper {
+    @include flex-all-center;
+
+    min-height: 100%;
+    padding: 4rem 1.5rem;
+  }
+
+  &-content {
+    position: relative;
+    width: 100%;
+    max-width: var(--width);
+    border-radius: var(--radius);
+    background-color: var(--white-100);
+
+    &__body {
+      position: relative;
+      padding: 7rem 3rem 3rem;
+
+      @include small_tablet {
+        padding: 5.5rem 2rem 2rem;
+      }
+
+      .spinner-wrapper {
+        margin-top: initial;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+
+  // Make close button class
+  &__close {
+    @include box(4rem);
+
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    border-radius: var(--radius);
+    background-color: var(--gray-100);
+    transition: background-color var(--transition);
+
+    @media (hover) {
+      &:hover {
+        background-color: var(--dark-800);
+        transition: background-color var(--transition);
+
+        &::after,
+        &::before {
+          background-color: var(--gray-100);
+          transition: background-color var(--transition);
+        }
+      }
+    }
+
+    @include small_tablet {
+      @include box(3rem);
+
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+
+    &::after,
+    &::before {
+      @include pseudo($width: 2rem, $height: 0.2rem);
+
+      top: 50%;
+      left: 50%;
+      background-color: var(--dark-800);
+
+      @include small_tablet {
+        width: 1.6rem;
+      }
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  &__subtitle {
+    margin-top: 2rem;
+  }
+
+  &__actions-btns {
+    @include flex-all-center;
+
+    gap: 3rem;
+    margin-top: 3rem;
+
+    @include small_tablet {
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+  }
+
+  &__btn {
+    max-width: 15rem;
+  }
+
+  &-delete {
+    &__title {
+      word-break: break-all;
+    }
+  }
+}
+
+@keyframes show-modal {
+  0% {
+    @include fade("hide");
+  }
+
+  100% {
+    @include fade("show");
+  }
+}

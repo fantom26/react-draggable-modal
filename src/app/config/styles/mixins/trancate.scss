@@ -1,0 +1,17 @@
+/*
+  This mixin is designed to create text truncation with ellipsis (...) when the text exceeds a certain number of lines
+
+  usage: @include truncate(2);
+
+  Hello world! It's me.
+  Call me back in th...
+*/
+
+@mixin truncate($cl: 1) {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $cl;
+  -webkit-box-orient: vertical;
+}

@@ -1,0 +1,36 @@
+:root {
+  --container-offset: 1.5rem;
+  --transition: 0.3s;
+  --radius: 0.4rem;
+
+  // Colors
+  --gray-50: #e9eded;
+  --gray-100: #ced4da;
+  --gray-200: #adb5bd;
+  --gray-300: #6a7178;
+  --gray-400: #4f575e;
+  --dark-800: #272b30;
+  --white-100: #ffffff;
+  --white-400: #f3f3f3;
+  --error: #dc2020;
+  --border-light-100: #eceff1;
+  --backdrop: #36363666;
+
+  // Sizes
+  --medium-size: 1.8rem;
+
+  // Weights
+  --normal-weight: 400;
+  --medium-weight: 500;
+  --semibold-weight: 700;
+
+  // Line-heights
+  --small-line-height: 115%;
+  --medium-line-height: 140%;
+
+  // Shadows
+  --shadow: 0 0.1rem 0.2rem #0000001a;
+
+  // Indents
+  --page-offset: 2rem;
+}

@@ -1,0 +1,8 @@
+@use "sass:math";
+
+@function fluid($max-value, $min-value, $min-vw: 36rem, $max-vw: 120rem) {
+  $factor: math.div(1, $max-vw - $min-vw) * ($max-value - $min-value);
+  $calc-value: unquote("#{ $min-value - ( $min-vw * $factor ) } + #{ 100vw * $factor }");
+
+  @return clamp(#{if($min-value > $max-value, $max-value, $min-value)}, #{$calc-value}, #{if($min-value > $max-value, $min-value, $max-value)});
+}

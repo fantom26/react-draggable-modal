@@ -1,0 +1,15 @@
+@import "@/app/config/styles/connections.scss";
+
+.global-loader {
+  &__backdrop {
+    @include flex-all-center;
+
+    position: fixed;
+    z-index: 130;
+    inset: 0;
+
+    &--gray {
+      background-color: var(--backdrop);
+    }
+  }
+}

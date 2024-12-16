@@ -1,0 +1,5 @@
+@mixin block-styles {
+  border-radius: var(--radius);
+  background-color: var(--white-100);
+  box-shadow: var(--shadow);
+}

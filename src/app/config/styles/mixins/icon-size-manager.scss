@@ -1,0 +1,5 @@
+@mixin icon-size-manager {
+  display: inline-block;
+  flex-shrink: 0;
+  font-size: inherit;
+}

@@ -1,0 +1,21 @@
+/*
+  The fade mixin provides a convenient way to apply fading animations to elements using CSS transitions.
+
+  usage: @include fade("show"); / @include fade("hide");
+*/
+
+@mixin fade($type: "show") {
+  @if $type == "hide" {
+    opacity: 0;
+    visibility: hidden;
+
+    @include transition(var(--transition), visibility, opacity);
+  }
+
+ @else {
+    opacity: 1;
+    visibility: visible;
+
+    @include transition(var(--transition), visibility, opacity);
+  }
+}

@@ -1,0 +1,12 @@
+/*
+  usage: @include transition(150ms, width, background-color, etc);
+*/
+@mixin transition($time, $properties...) {
+  $transition: ();
+
+  @each $property in $properties {
+    $transition: append($transition, ($property $time linear), $separator: comma);
+  }
+
+  transition: $transition;
+}
