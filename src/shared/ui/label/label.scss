@@ -1,0 +1,15 @@
+@import "@/app/config/styles/connections.scss";
+
+.label {
+  @include font-source($colour: var(--gray-400), $lh: var(--medium-line-height));
+
+  position: relative;
+  display: inline-flex;
+  margin-bottom: 1.5rem;
+
+  &.center {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

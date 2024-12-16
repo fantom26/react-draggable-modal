@@ -1,0 +1,39 @@
+@import "@/app/config/styles/connections.scss";
+
+.form-field {
+  position: relative;
+  width: 100%;
+
+  &.required {
+    .label::after {
+      position: absolute;
+      right: -1rem;
+      content: "*";
+    }
+  }
+
+  &.error {
+    .input,
+    .tel-input,
+    .select > div {
+      border-color: var(--error);
+      color: var(--error);
+      outline: var(--error);
+
+      &:focus {
+        border-color: var(--error);
+      }
+    }
+
+    .form-field__helper-text {
+      color: var(--error);
+    }
+  }
+
+  &__helper-text {
+    @include font-source($size: 1.2rem, $weight: var(--normal-weight), $lh: 100%);
+
+    position: absolute;
+    margin-top: 0.5rem;
+  }
+}

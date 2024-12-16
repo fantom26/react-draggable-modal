@@ -1,0 +1,76 @@
+@import "@/app/config/styles/connections.scss";
+
+.checkbox {
+  &__label {
+    cursor: pointer;
+
+    @media (hover) {
+      &:hover {
+        .checkbox__input:not(:checked, :disabled) + .checkbox__btn {
+          path {
+            transition: fill var(--transition);
+            fill: var(--gray-200);
+          }
+        }
+      }
+    }
+
+    .checkbox__input:disabled + .checkbox__btn {
+      cursor: not-allowed;
+      user-select: none;
+
+      &::before {
+        border: 0.1rem solid var(--gray-400);
+        background-color: var(--gray-50);
+        transition: background-color var(--transition);
+      }
+    }
+
+    .checkbox__input:checked + .checkbox__btn {
+      path {
+        transition: fill var(--transition);
+        fill: var(--white-100);
+      }
+
+      &::before {
+        background-color: var(--primary-color);
+        transition: background-color var(--transition);
+      }
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 0.3rem;
+    display: flex;
+    transform: translateY(-50%);
+    transition: fill var(--transition);
+  }
+
+  &__text {
+    margin-left: 1.5rem;
+  }
+
+  &__btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    color: var(--dark-800);
+    font-size: 1.4rem;
+
+    &::before {
+      @include flex-all-center;
+      @include pseudo($width: 2rem, $height: 2rem, $content: "");
+      @include transition(var(--transition), color, background-color);
+
+      left: 0;
+      border: 0.1rem solid var(--primary-color);
+      border-radius: var(--radius);
+      color: var(--white-100);
+      font-size: 2rem;
+      background-color: var(--white-100);
+    }
+  }
+}

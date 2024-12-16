@@ -1,0 +1,53 @@
+@import "@/app/config/styles/connections.scss";
+
+.radio {
+  &__label {
+    cursor: pointer;
+  }
+
+  &__input {
+    &:checked + .radio__btn {
+      &::after {
+        background-color: var(--primary-color);
+        transition: background-color var(--transition);
+      }
+    }
+  }
+
+  &__btn {
+    @include flex-v-center;
+
+    position: relative;
+    padding-left: 3rem;
+
+    &::after, &::before {
+      @include flex-all-center;
+      @include transition(var(--transition), background-color);
+
+      border-radius: 50%;
+    }
+
+    &::after {
+      @include flex-all-center;
+      @include pseudo($width: 1.4rem, $height: 1.4rem, $content: "");
+
+      top: 50%;
+      left: 0.3rem;
+      border-radius: 50%;
+      color: var(--white-100);
+      font-size: 2rem;
+      transform: translateY(-50%);
+    }
+
+    &::before {
+      @include flex-all-center;
+      @include pseudo($width: 2rem, $height: 2rem, $content: "");
+
+      top: 50%;
+      left: 0;
+      border: 0.1rem solid var(--primary-color);
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}

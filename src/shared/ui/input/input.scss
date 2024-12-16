@@ -1,0 +1,35 @@
+@import "@/app/config/styles/connections.scss";
+
+.input {
+  @include font-source($colour: var(--dark-800), $weight: var(--normal-weight), $lh: var(--medium-line-height));
+
+  width: 100%;
+  min-height: var(--input-height);
+  padding: 1rem 1.5rem;
+  border: 0.1rem solid var(--gray-100);
+  border-radius: var(--radius);
+  background-color: var(--white-100);
+  outline: none;
+
+  &__container-wrapper {
+    position: relative;
+  }
+
+  &::placeholder {
+    color: var(--gray-300);
+    text-overflow: ellipsis;
+  }
+
+  &:placeholder-shown {
+    text-overflow: ellipsis;
+  }
+
+  &:focus {
+    border-color: var(--primary-color);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
