@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from "react";
+import { FC, ReactNode, useLayoutEffect, useState } from "react";
 
 import { Rnd } from "react-rnd";
 import { Transition } from "react-transition-group";
@@ -17,15 +17,24 @@ interface DraggableModalProps extends ModalProps {
 }
 
 export const DraggableModal: FC<DraggableModalProps> = ({
-  defaultPosition = { x: 100, y: 100 },
-  defaultSize = { width: 400, height: 300 },
+  defaultPosition = { x: 0, y: 0 },
   maxWidth = 800,
   maxHeight = 600,
   visible,
   children
 }) => {
-  const [size, setSize] = useState(defaultSize);
+  const [size, setSize] = useState({ width: 400, height: 300 });
   const [position, setPosition] = useState(defaultPosition);
+
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      const newCenterX = (window.innerWidth - size.width) / 2;
+      const newCenterY = (window.innerHeight - size.height) / 2;
+      setPosition({ x: newCenterX, y: newCenterY });
+    };
+
+    handleResize();
+  }, []);
 
   return (
     <Portal container={document.body}>
@@ -37,7 +46,7 @@ export const DraggableModal: FC<DraggableModalProps> = ({
       >
         {(state) => (
           <Rnd
-            default={{ ...defaultPosition, ...defaultSize }}
+            default={{ ...defaultPosition, ...size }}
             position={position}
             size={size}
             className={`draggable-modal ${state}`}
