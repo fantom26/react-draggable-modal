@@ -69,11 +69,13 @@ export const DraggableModal: FC<DraggableModalProps> = ({
         onDragStop={onDragStop}
         onResizeStop={onResize}
       >
-        <div className="draggable-modal__header">
-          <h3>{title}</h3>
-          <CloseButton onClick={onClose} aria-label="Close draggable modal" />
+        <div className="draggable-modal__content scroll">
+          <div className="draggable-modal__header">
+            <h3>{title}</h3>
+            <CloseButton onClick={onClose} aria-label="Close draggable modal" />
+          </div>
+          {children}
         </div>
-        {children}
       </Rnd>
     </Portal>
   );
