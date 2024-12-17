@@ -1,9 +1,37 @@
 import { useState } from "react";
 
-import { Button, Container, DraggableModal, Modal } from "@/shared/ui";
+import {
+  Button,
+  Container,
+  DraggableModal,
+  ModalActions,
+  ModalContent,
+  ModalHeader,
+  ModalRoot
+} from "@/shared/ui";
 import Form from "@/shared/ui/form";
 
 import "./home.scss";
+
+const FormExample = () => {
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
+
+  return (
+    <Form.Root classes="home-page__form" onSubmit={onSubmit}>
+      <Form.Input name="name" label="Detail name" />
+      <Form.Input name="material" label="Material" required />
+      <div className="home-page__form-wrapper">
+        <Form.Input name="width" label="Width" required />
+        <Form.Input name="height" label="Height" required />
+      </div>
+      <Form.Checkbox name="terms" label="Texture" />
+      <Form.TextArea name="comment" label="Comment" />
+      <Button>Send</Button>
+    </Form.Root>
+  );
+};
 
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,10 +52,6 @@ function Home() {
     setIsDragModalOpen(false);
   };
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
-
   return (
     <div className="home-page">
       <Container>
@@ -39,26 +63,23 @@ function Home() {
             Open drag modal
           </Button>
         </div>
-        <Modal onClose={closeModal} visible={isModalOpen}>
-          Default modal
-        </Modal>
+        <ModalRoot onClose={closeModal} open={isModalOpen}>
+          <ModalHeader onClose={closeModal}>Default modal</ModalHeader>
+          <ModalContent>
+            <FormExample />
+          </ModalContent>
+          <ModalActions>
+            <Button type="button">Cancel</Button>
+            <Button type="button">Agree</Button>
+          </ModalActions>
+        </ModalRoot>
         {isDragModalOpen && (
           <DraggableModal
             title="New Detail"
             onClose={closeDragModal}
-            visible={isDragModalOpen}
+            open={isDragModalOpen}
           >
-            <Form.Root classes="home-page__form" onSubmit={onSubmit}>
-              <Form.Input name="name" label="Detail name" />
-              <Form.Input name="material" label="Material" required />
-              <div className="home-page__form-wrapper">
-                <Form.Input name="width" label="Width" required />
-                <Form.Input name="height" label="Height" required />
-              </div>
-              <Form.Checkbox name="terms" label="Texture" />
-              <Form.TextArea name="comment" label="Comment" />
-              <Button>Send</Button>
-            </Form.Root>
+            <FormExample />
           </DraggableModal>
         )}
       </Container>

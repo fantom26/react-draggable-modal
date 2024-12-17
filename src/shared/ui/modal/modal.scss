@@ -6,107 +6,47 @@
   z-index: z("modal");
   overflow: hidden auto;
 
-  &::before {
-    position: absolute;
-    z-index: -1;
-    background-color: var(--backdrop);
-    content: "";
-    inset: 0;
-
-    @include fade("hide");
-  }
-
   &.entering {
-    &::before, & {
-      animation: show-modal var(--transition) forwards;
-    }
+    animation: show-modal var(--transition) forwards;
   }
 
   &.entered {
-    &::before, & {
-      @include fade("show");
-    }
+    @include fade("show");
   }
 
   &.exiting {
-    &::before, & {
-      animation: show-modal var(--transition) reverse;
-    }
+    animation: show-modal var(--transition) reverse;
   }
 
-  &-wrapper {
+  &__container {
     @include flex-all-center;
 
     min-height: 100%;
     padding: 4rem 1.5rem;
   }
 
-  &-content {
+  &__header {
+    @include flex-all-sb;
+    gap: 1rem;
+    padding: 2rem;
+  }
+
+  &__content, &__actions {
+    padding-inline: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  &__root {
     position: relative;
     width: 100%;
     max-width: var(--width);
     border-radius: var(--radius);
     background-color: var(--white-100);
-
-    &__body {
-      position: relative;
-      padding: 7rem 3rem 3rem;
-
-      @include small_tablet {
-        padding: 5.5rem 2rem 2rem;
-      }
-
-      .spinner-wrapper {
-        margin-top: initial;
-      }
-    }
   }
 
   &__actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 2rem;
-  }
-
-  &__close {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-  }
-
-  &__form {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  &__subtitle {
-    margin-top: 2rem;
-  }
-
-  &__actions-btns {
     @include flex-all-center;
-
-    gap: 3rem;
-    margin-top: 3rem;
-
-    @include small_tablet {
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-  }
-
-  &__btn {
-    max-width: 15rem;
-  }
-
-  &-delete {
-    &__title {
-      word-break: break-all;
-    }
+    gap: 1.5rem;
   }
 }
 

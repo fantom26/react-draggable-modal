@@ -1,57 +1,42 @@
-import { FC, ReactNode, Suspense, useEffect } from "react";
+import { FC, ReactNode, useEffect } from "react";
 
 import { Transition } from "react-transition-group";
 
 import { ANIMATION_DELAY } from "@/shared/config/constants.ts";
 import { useScrollLock } from "@/shared/hooks";
 import { CloseButton, Portal } from "@/shared/ui";
-import { GlobalLoader } from "@/shared/ui/global-loader";
+import { Backdrop } from "@/shared/ui/backdrop";
 
 import "./modal.scss";
 
-export interface ModalProps {
-  visible: boolean;
+interface IWrapper {
   children: ReactNode;
-  bodyClassName?: string;
+}
+
+export interface ModalProps extends IWrapper {
+  open: boolean;
   width?: number;
   onClose: () => void;
 }
 
-const ModalWrapper: FC<Omit<ModalProps, "width" | "visible">> = ({
-  children,
-  onClose,
-  bodyClassName
-}) => {
+interface HeaderProps extends IWrapper {
+  onClose: () => void;
+}
+
+export const ModalHeader = ({ children, onClose }: HeaderProps) => {
   return (
-    <div className="modal-wrapper">
-      <div className="modal-content">
-        <div
-          className={
-            bodyClassName
-              ? `modal-content__body ${bodyClassName}`
-              : "modal-content__body"
-          }
-        >
-          <Suspense fallback={<GlobalLoader loading={true} />}>
-            {children}
-          </Suspense>
-        </div>
-        <CloseButton
-          className="modal__close"
-          onClick={onClose}
-          aria-label="Close modal"
-        />
-      </div>
+    <div className="modal__header">
+      {children}
+      <CloseButton onClick={onClose} aria-label="Close modal" />
     </div>
   );
 };
 
-export const Modal: FC<ModalProps> = ({
-  visible,
-  width = 58.5,
-  bodyClassName,
+export const ModalRoot: FC<ModalProps> = ({
   children,
-  onClose
+  open,
+  onClose,
+  width = 58.5
 }) => {
   const { lockScroll, unlockScroll } = useScrollLock();
 
@@ -60,7 +45,9 @@ export const Modal: FC<ModalProps> = ({
   };
 
   useEffect(() => {
-    if (!visible) return;
+    if (!open) {
+      return;
+    }
 
     const isBodyLocked = document.body.classList.contains("lock");
 
@@ -73,12 +60,12 @@ export const Modal: FC<ModalProps> = ({
         unlockScroll();
       }
     };
-  }, [visible]);
+  }, [open]);
 
   return (
     <Portal domNode={document.body}>
       <Transition
-        in={visible}
+        in={open}
         timeout={ANIMATION_DELAY}
         mountOnEnter
         unmountOnExit
@@ -90,12 +77,21 @@ export const Modal: FC<ModalProps> = ({
             role="dialog"
             aria-modal="true"
           >
-            <ModalWrapper onClose={onClose} bodyClassName={bodyClassName}>
-              {children}
-            </ModalWrapper>
+            <Backdrop visible={open} onClose={onClose} />
+            <div className="modal__container">
+              <div className="modal__root">{children}</div>
+            </div>
           </div>
         )}
       </Transition>
     </Portal>
   );
 };
+
+export const ModalContent = ({ children }: IWrapper) => (
+  <div className="modal__content">{children}</div>
+);
+
+export const ModalActions = ({ children }: IWrapper) => (
+  <div className="modal__actions">{children}</div>
+);

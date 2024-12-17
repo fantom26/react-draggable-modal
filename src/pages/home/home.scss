@@ -14,7 +14,6 @@ $form-gap: 1.5rem;
   &__form {
     @include flex-clmn;
     gap: $form-gap;
-    margin-top: 2rem;
 
     &-wrapper {
       @include flex-all-sb;
