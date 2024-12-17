@@ -1,0 +1,76 @@
+@import "@/app/config/styles/connections.scss";
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+
+  &.entering {
+    .backdrop {
+      animation: show-modal var(--transition) forwards;
+    }
+  }
+
+  &.entered {
+    .backdrop {
+      @include fade("show");
+    }
+  }
+
+  &.exiting {
+    .backdrop {
+      animation: show-modal var(--transition) reverse;
+    }
+  }
+
+  &.exited {
+    .backdrop {
+      @include fade("hide");
+    }
+  }
+
+  &--bottom {
+    .drawer__wrapper {
+      position: fixed;
+      top: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transform: translateY(-100%);
+    }
+
+    &.entering {
+      .drawer__wrapper {
+        animation: appear-from-bottom var(--transition) forwards;
+      }
+    }
+
+    &.entered {
+      .drawer__wrapper {
+        transform: translateY(0);
+      }
+    }
+
+    &.exiting {
+      .drawer__wrapper {
+        animation: appear-from-bottom var(--transition) reverse;
+      }
+    }
+
+    &.exited {
+      .drawer__wrapper {
+        transform: translateY(-100%);
+      }
+    }
+  }
+}
+
+@keyframes appear-from-bottom {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

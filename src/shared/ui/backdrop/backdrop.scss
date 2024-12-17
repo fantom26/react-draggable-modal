@@ -1,0 +1,12 @@
+@import "@/app/config/styles/connections.scss";
+
+.backdrop {
+  position: absolute;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--backdrop);
+  content: "";
+  inset: 0;
+}
