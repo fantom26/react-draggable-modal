@@ -9,6 +9,7 @@ import {
   ModalHeader,
   ModalRoot
 } from "@/shared/ui";
+import { Divider } from "@/shared/ui/divider";
 import Form from "@/shared/ui/form";
 
 import "./home.scss";
@@ -65,9 +66,11 @@ function Home() {
         </div>
         <ModalRoot onClose={closeModal} open={isModalOpen}>
           <ModalHeader onClose={closeModal}>Default modal</ModalHeader>
+          <Divider />
           <ModalContent>
             <FormExample />
           </ModalContent>
+          <Divider />
           <ModalActions>
             <Button type="button">Cancel</Button>
             <Button type="button">Agree</Button>

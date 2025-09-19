@@ -23,15 +23,6 @@ interface HeaderProps extends IWrapper {
   onClose: () => void;
 }
 
-export const ModalHeader = ({ children, onClose }: HeaderProps) => {
-  return (
-    <div className="modal__header">
-      {children}
-      <CloseButton onClick={onClose} aria-label="Close modal" />
-    </div>
-  );
-};
-
 export const ModalRoot: FC<ModalProps> = ({
   children,
   open,
@@ -81,6 +72,13 @@ export const ModalRoot: FC<ModalProps> = ({
     </Portal>
   );
 };
+
+export const ModalHeader = ({ children, onClose }: HeaderProps) => (
+  <div className="modal__header">
+    {children}
+    <CloseButton onClick={onClose} aria-label="Close modal" />
+  </div>
+);
 
 export const ModalContent = ({ children }: IWrapper) => (
   <div className="modal__content">{children}</div>
