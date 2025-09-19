@@ -5,7 +5,7 @@ export interface IModalInfo<T> {
   width?: 38 | 58.5 | 85.5 | 144;
 }
 
-export type TModal<T> = { isOpen: boolean; data?: any } & IModalInfo<T>;
+export type TModal<T> = { isOpen: boolean; data?: unknown } & IModalInfo<T>;
 
 export const generateDefaultModal = <T>(type: T) => ({
   isOpen: false,
@@ -25,7 +25,7 @@ export const useModal = <T>(defaultModal: T) => {
   }, []);
 
   const openModal = useCallback(
-    (modalInfo: IModalInfo<T>, data: any | null = null) => {
+    (modalInfo: IModalInfo<T>, data: unknown | null = null) => {
       setModalState({
         ...modalInfo,
         isOpen: true,

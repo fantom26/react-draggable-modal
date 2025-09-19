@@ -28,7 +28,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
 
 export interface RadioGroupProps {
   name: string;
-  defaultValue?: any;
+  defaultValue?: unknown;
   data: RadioProps[];
 }
 

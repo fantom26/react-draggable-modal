@@ -15,7 +15,7 @@ import Form from "@/shared/ui/form";
 import "./home.scss";
 
 const FormExample = () => {
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: unknown) => {
     console.log(data);
   };
 

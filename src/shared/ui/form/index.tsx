@@ -8,7 +8,7 @@ import { TextArea } from "@/shared/ui/textarea";
 interface FormProps {
   classes?: string;
   children: ReactNode;
-  onSubmit: (data: any) => void;
+  onSubmit: (data: unknown) => void;
 }
 
 export const Form: FC<FormProps> = (props) => {
