@@ -1,0 +1,63 @@
+@import "@styles/connections.scss";
+
+.typography {
+  &.h1,
+  &.h2, &.h3, &.h4, &.h5 {
+    @include font-source($lh: var(--medium-line-height), $weight: var(--normal-weight));
+  }
+
+  &.h1 {
+    @include font-source($size: fluid(2.8rem, 2.2rem), $weight: var(--semibold-weight));
+  }
+
+  &.h2 {
+    @include font-source($size: fluid(2.6rem, 2rem), $weight: var(--semibold-weight));
+  }
+
+  &.h3 {
+    font-size: fluid(2.4rem, 1.8rem);
+  }
+
+  &.h4 {
+    font-size: fluid(2.2rem, 1.6rem);
+  }
+
+  &.h5 {
+    font-size: fluid(2rem, 1.6rem);
+  }
+
+  &.body1 {
+    font-weight: var(--normal-weight);
+    font-size: inherit;
+  }
+
+  &.center {
+    text-align: center;
+  }
+
+  &.caption {
+    @include font-source($size: var(--the-smallest-size), $lh: var(--small-line-height));
+  }
+
+  &.grey {
+    color: var(--gray-300);
+  }
+
+  &.black {
+    color: var(--dark-900);
+  }
+
+  &.purple {
+    color: var(--primary-color);
+  }
+
+  &.white {
+    color:var(--white-100);
+  }
+
+  & > p {
+    &:not(:last-child) {
+      margin-bottom: 1.2rem;
+    }
+  }
+}
