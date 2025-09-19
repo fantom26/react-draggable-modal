@@ -35,7 +35,7 @@ export const Drawer: FC<DrawerProps> = ({
   }, [visible]);
 
   return (
-    <Portal domNode={document.body}>
+    <Portal>
       <Transition
         in={visible}
         timeout={ANIMATION_DELAY}

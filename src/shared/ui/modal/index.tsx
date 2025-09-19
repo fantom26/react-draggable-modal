@@ -63,7 +63,7 @@ export const ModalRoot: FC<ModalProps> = ({
   }, [open]);
 
   return (
-    <Portal domNode={document.body}>
+    <Portal>
       <CSSTransition
         in={open}
         timeout={ANIMATION_DELAY}

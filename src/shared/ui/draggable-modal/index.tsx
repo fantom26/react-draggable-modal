@@ -55,7 +55,7 @@ export const DraggableModal: FC<DraggableModalProps> = ({
   }, []);
 
   return (
-    <Portal domNode={document.body}>
+    <Portal>
       <Rnd
         default={{ ...defaultPosition, ...size }}
         position={position}

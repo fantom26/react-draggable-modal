@@ -4,12 +4,12 @@ import { createPortal } from "react-dom";
 
 interface PortalProps {
   children: ReactNode;
-  domNode: Element | DocumentFragment;
+  domNode?: Element | DocumentFragment;
   key?: Key | null;
 }
 
 export const Portal: FC<PortalProps> = ({
   children,
-  domNode,
+  domNode = document.body,
   key = null
 }): ReactPortal => createPortal(children, domNode, key);
