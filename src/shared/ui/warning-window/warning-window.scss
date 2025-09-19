@@ -1,0 +1,38 @@
+@import "@styles/connections";
+
+.warning-window {
+  @include block-styles;
+
+  width: 100%;
+  margin-inline: auto;
+  max-width: 58.5rem;
+  padding: 4rem;
+
+  @media (max-width: em(767)) {
+    padding: 2rem;
+  }
+
+  &__img {
+    justify-content: center;
+  }
+
+  &__description {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  &__text {
+    margin-top: 2.5rem;
+  }
+
+  &__actions {
+    @include flex-all-center;
+
+    gap: 1.5rem;
+    margin-top: 2rem;
+
+    @media (max-width: em(576)) {
+      flex-direction: column;
+    }
+  }
+}
