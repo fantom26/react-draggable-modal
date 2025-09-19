@@ -1,6 +1,6 @@
 import { FC, ReactNode, useEffect } from "react";
 
-import { Transition } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
 import { ANIMATION_DELAY } from "@/shared/config/constants.ts";
 import { useScrollLock } from "@/shared/hooks";
@@ -64,26 +64,20 @@ export const ModalRoot: FC<ModalProps> = ({
 
   return (
     <Portal domNode={document.body}>
-      <Transition
+      <CSSTransition
         in={open}
         timeout={ANIMATION_DELAY}
+        classNames="modal modal-state"
         mountOnEnter
         unmountOnExit
       >
-        {(state) => (
-          <div
-            style={styles}
-            className={`modal ${state}`}
-            role="dialog"
-            aria-modal="true"
-          >
-            <Backdrop visible={open} onClose={onClose} />
-            <div className="modal__container">
-              <div className="modal__root">{children}</div>
-            </div>
+        <div style={styles} role="dialog" aria-modal="true">
+          <Backdrop visible={open} onClose={onClose} />
+          <div className="modal__container">
+            <div className="modal__root">{children}</div>
           </div>
-        )}
-      </Transition>
+        </div>
+      </CSSTransition>
     </Portal>
   );
 };
