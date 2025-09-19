@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { CustomErrorBoundary } from "@/shared/ui";
 import {
   Button,
   Container,
@@ -34,9 +35,25 @@ const FormExample = () => {
   );
 };
 
+const FormErrorExample = () => {
+  throw new Error("💥 Intentional render error");
+
+  return <div>This will never render</div>;
+};
+
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDragModalOpen, setIsDragModalOpen] = useState(false);
+  const [isModalErrorOpen, setIsModalErrorOpen] = useState(false);
+
+  const openErrorModal = () => {
+    setIsModalErrorOpen(true);
+  };
+
+  const closeErrorModal = () => {
+    setIsModalErrorOpen(false);
+  };
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -63,12 +80,29 @@ function Home() {
           <Button type="button" onClick={openDragModal}>
             Open drag modal
           </Button>
+          <Button type="button" onClick={openErrorModal}>
+            Open error modal
+          </Button>
         </div>
         <ModalRoot onClose={closeModal} open={isModalOpen}>
           <ModalHeader onClose={closeModal}>Default modal</ModalHeader>
           <Divider />
           <ModalContent>
             <FormExample />
+          </ModalContent>
+          <Divider />
+          <ModalActions>
+            <Button type="button">Cancel</Button>
+            <Button type="button">Agree</Button>
+          </ModalActions>
+        </ModalRoot>
+        <ModalRoot onClose={closeErrorModal} open={isModalErrorOpen}>
+          <ModalHeader onClose={closeErrorModal}>Error modal</ModalHeader>
+          <Divider />
+          <ModalContent>
+            <CustomErrorBoundary title="Error">
+              <FormErrorExample />
+            </CustomErrorBoundary>
           </ModalContent>
           <Divider />
           <ModalActions>
