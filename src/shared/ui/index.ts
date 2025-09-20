@@ -13,3 +13,5 @@ export * from "./error-boundary";
 export * from "./warning-window";
 export * from "./typography";
 export * from "./status-state";
+export * from "./popover";
+export * from "./tooltip";

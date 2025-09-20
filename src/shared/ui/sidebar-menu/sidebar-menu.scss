@@ -1,0 +1,52 @@
+@import "@/app/config/styles/connections.scss";
+
+.sidebar {
+  z-index: z("sidebar-menu");
+  background-color: var(--white-100);
+  box-shadow: var(--shadow);
+
+  @media (em(576) <= width <= em(1400)) {
+    position: relative;
+  }
+
+  @include mobile {
+    display: none;
+  }
+
+  &-menu {
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 7rem;
+    padding: 0.5rem;
+
+    &-item {
+      @include flex-all-center;
+
+      padding: 2rem;
+      border-radius: var(--radius);
+      transition: background-color var(--transition);
+      fill: var(--primary-color);
+      stroke: var(--primary-color);
+
+      @media (hover) {
+        &:not(.sidebar-menu-item--active) {
+          &:hover {
+            background-color: var(--primary-color-100);
+            transition: background-color var(--transition);
+          }
+        }
+      }
+
+      &--active {
+        background-color: var(--primary-color);
+        transition: background-color var(--transition);
+        fill: var(--white-100);
+        stroke: var(--white-100);
+      }
+    }
+  }
+}
