@@ -12,6 +12,7 @@ import {
 } from "@/shared/ui";
 import { Divider } from "@/shared/ui/divider";
 import Form from "@/shared/ui/form";
+import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";
 
 import "./home.scss";
 
@@ -45,6 +46,7 @@ function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDragModalOpen, setIsDragModalOpen] = useState(false);
   const [isModalErrorOpen, setIsModalErrorOpen] = useState(false);
+  const [isPopover, setIsPopover] = useState(false);
 
   const openErrorModal = () => {
     setIsModalErrorOpen(true);
@@ -70,19 +72,27 @@ function Home() {
     setIsDragModalOpen(false);
   };
 
+  const openPopover = () => {
+    setIsPopover(true);
+  };
+
   return (
     <div className="home-page">
       <Container>
         <div className="home-page__btns">
-          <Button type="button" onClick={openModal}>
-            Open modal
-          </Button>
-          <Button type="button" onClick={openDragModal}>
-            Open drag modal
-          </Button>
-          <Button type="button" onClick={openErrorModal}>
-            Open error modal
-          </Button>
+          <Button onClick={openModal}>Open modal</Button>
+          <Button onClick={openDragModal}>Open drag modal</Button>
+          <Button onClick={openErrorModal}>Open error modal</Button>
+          <Popover
+            open={isPopover}
+            onOpenChange={setIsPopover}
+            placement="bottom"
+          >
+            <PopoverTrigger asChild>
+              <Button onClick={openPopover}>Popover example</Button>
+            </PopoverTrigger>
+            <PopoverContent>Popover content</PopoverContent>
+          </Popover>
         </div>
         <ModalRoot onClose={closeModal} open={isModalOpen}>
           <ModalHeader onClose={closeModal}>Default modal</ModalHeader>
@@ -92,8 +102,8 @@ function Home() {
           </ModalContent>
           <Divider />
           <ModalActions>
-            <Button type="button">Cancel</Button>
-            <Button type="button">Agree</Button>
+            <Button>Cancel</Button>
+            <Button>Agree</Button>
           </ModalActions>
         </ModalRoot>
         <ModalRoot onClose={closeErrorModal} open={isModalErrorOpen}>
@@ -106,12 +116,8 @@ function Home() {
           </ModalContent>
           <Divider />
           <ModalActions>
-            <Button type="button" onClick={closeErrorModal}>
-              Cancel
-            </Button>
-            <Button type="button" onClick={closeErrorModal}>
-              Agree
-            </Button>
+            <Button onClick={closeErrorModal}>Cancel</Button>
+            <Button onClick={closeErrorModal}>Agree</Button>
           </ModalActions>
         </ModalRoot>
         {isDragModalOpen && (

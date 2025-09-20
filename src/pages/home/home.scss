@@ -8,7 +8,7 @@ $form-gap: 1.5rem;
   &__btns {
     @include flex-all-center;
     gap: 2rem;
-    max-width: 60rem;
+    max-width: 80rem;
   }
 
   &__form {
