@@ -13,7 +13,7 @@
   }
 
   &__img {
-    justify-content: center;
+    @include flex-all-center;
   }
 
   &__description {

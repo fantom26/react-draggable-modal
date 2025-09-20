@@ -11,7 +11,7 @@ interface StatusStateProps {
 
 export const StatusState: FC<StatusStateProps> = ({
   title,
-  img = <MdError />
+  img = <MdError size={70} color="var(--error)" />
 }) => (
   <WarningWindow>
     <WarningWindow.Image>{img}</WarningWindow.Image>

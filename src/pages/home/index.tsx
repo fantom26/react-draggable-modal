@@ -106,8 +106,12 @@ function Home() {
           </ModalContent>
           <Divider />
           <ModalActions>
-            <Button type="button">Cancel</Button>
-            <Button type="button">Agree</Button>
+            <Button type="button" onClick={closeErrorModal}>
+              Cancel
+            </Button>
+            <Button type="button" onClick={closeErrorModal}>
+              Agree
+            </Button>
           </ModalActions>
         </ModalRoot>
         {isDragModalOpen && (
