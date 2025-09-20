@@ -13,6 +13,7 @@ import {
 import { Divider } from "@/shared/ui/divider";
 import Form from "@/shared/ui/form";
 import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/tooltip";
 
 import "./home.scss";
 
@@ -83,15 +84,21 @@ function Home() {
           <Button onClick={openModal}>Open modal</Button>
           <Button onClick={openDragModal}>Open drag modal</Button>
           <Button onClick={openErrorModal}>Open error modal</Button>
+
           <Popover
             open={isPopover}
             onOpenChange={setIsPopover}
             placement="bottom"
           >
-            <PopoverTrigger asChild>
-              <Button onClick={openPopover}>Popover example</Button>
-            </PopoverTrigger>
-            <PopoverContent>Popover content</PopoverContent>
+            <Tooltip>
+              <PopoverTrigger asChild>
+                <TooltipTrigger asChild>
+                  <Button onClick={openPopover}>Popover example</Button>
+                </TooltipTrigger>
+              </PopoverTrigger>
+              <TooltipContent>Tooltip example</TooltipContent>
+              <PopoverContent>Popover content</PopoverContent>
+            </Tooltip>
           </Popover>
         </div>
         <ModalRoot onClose={closeModal} open={isModalOpen}>

@@ -1,0 +1,15 @@
+@import "@/app/config/styles/connections.scss";
+
+.tooltip {
+  &__content {
+    @include block-styles;
+
+    position: absolute;
+    z-index: z("tooltip");
+    width: max-content;
+    max-width: 48rem;
+    padding: 1rem 2rem;
+    border: 0.1rem solid var(--border-light-100);
+    pointer-events: none;
+  }
+}
