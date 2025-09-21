@@ -1,0 +1,18 @@
+@import "@/app/config/styles/connections.scss";
+
+.main-layout {
+  flex-grow: 1;
+
+  &-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f3f6f8;
+  }
+}
+
+.error-layout {
+  @include flex-all-center;
+
+  flex-grow: 1;
+}

@@ -23,3 +23,17 @@ body {
     overscroll-behavior: none;
   }
 }
+
+.wrapper {
+  // Don't add overflow because sticky sidebar-menu will be broken
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 36rem;
+  min-height: 100%;
+
+  & > div:has(main) {
+    flex: 1 1 auto;
+  }
+}

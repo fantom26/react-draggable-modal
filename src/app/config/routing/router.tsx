@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import ErrorBoundaryLayout from "@/app/config/routing/error-boundary-layout.tsx";
 import { BASIC_PATHS, ERROR_PATHS } from "@/app/config/routing/pathes.ts";
+import { IndexLayout, MainLayout } from "@/shared/layouts";
 
 const routerOptions = {
   basename: "/"
@@ -28,7 +29,13 @@ const routes = [
 ];
 
 const router = createBrowserRouter(
-  [{ element: <ErrorBoundaryLayout />, children: routes }],
+  [
+    {
+      errorElement: <ErrorBoundaryLayout />,
+      element: <IndexLayout />,
+      children: [{ element: <MainLayout />, children: routes }]
+    }
+  ],
   routerOptions
 );
 
