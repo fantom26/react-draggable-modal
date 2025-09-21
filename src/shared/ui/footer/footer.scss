@@ -1,0 +1,23 @@
+@import "@/app/config/styles/connections.scss";
+
+.footer {
+  min-height: var(--footer-height);
+  padding: 2rem 4.8rem;
+  color: var(--white-100);
+  background-color: var(--primary-color);
+
+  @include desktop {
+    padding-inline: 1.5rem;
+  }
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  &__wrapper {
+    @include flex-all-sb;
+
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+}

@@ -1,6 +1,7 @@
 export const BASIC_PATHS = {
   HOME: "/",
-  ABOUT: "/about"
+  ABOUT: "/about",
+  UI_SETTINGS: "/ui-settings"
 };
 
 export const ERROR_PATHS = {
