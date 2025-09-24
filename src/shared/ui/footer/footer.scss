@@ -6,14 +6,6 @@
   color: var(--white-100);
   background-color: var(--primary-color);
 
-  @include desktop {
-    padding-inline: 1.5rem;
-  }
-
-  @include mobile {
-    flex-direction: column;
-  }
-
   &__wrapper {
     @include flex-all-sb;
 
